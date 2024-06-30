@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Ensure sysstat is installed
+if ! command -v mpstat &> /dev/null; then
+    echo "mpstat command could not be found. Please install sysstat."
+    exit 1
+fi
+
+# Get CPU usage
+cpu_usage=$(mpstat 1 1 | awk '/Average:/ {print 100 - $NF}')
+
+# Print CPU usage as integer
+cpu_usage_int=$(printf "%.0f" "$cpu_usage")
+echo "🖥️$cpu_usage_int"
+

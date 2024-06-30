@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# This script outputs the current screen brightness
+
+# Get the current brightness using brightnessctl
+current_brightness=$(brightnessctl -d intel_backlight g)
+
+# Get the maximum brightness
+max_brightness=$(brightnessctl -d intel_backlight m)
+
+# Calculate the current brightness percentage
+brightness_percentage=$(echo "$current_brightness * 100 / $max_brightness" | bc)
+
+# Output the current brightness percentage
+echo "🖥️$brightness_percentage"
+
